@@ -6,8 +6,8 @@ $cred = get-credential -Message "Input the credentials for the hosts" ##### this
 
 foreach ($ip in $host_ips){
 $ip
-$fqdn = (Resolve-DnsName $ip -Server 192.168.203.220).namehost 2>$null ### you can remove this line or chnge the IP to refrlect your own dns server
-Set-Item WSMan:\localhost\Client\TrustedHosts *.nibssserver.com -Force ### change the nibssserver.com to your own domain, this line resolved 50% of my issues
+$fqdn = (Resolve-DnsName $ip -Server 10.1.2.3).namehost 2>$null ### you can remove this line or chnge the IP to reflect your own dns server
+Set-Item WSMan:\localhost\Client\TrustedHosts *.example.com -Force ### change the nibssserver.com to your own domain, this line resolved 50% of my issues
 invoke-command -ComputerName $fqdn -FilePath $cmd -Credential $cred ## leave this command 
 $fqdn
 ""
